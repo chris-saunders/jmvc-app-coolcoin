@@ -1,0 +1,30 @@
+{
+  "name": "app-ci-sample",
+  "version": "0.0.0",
+  "description": "app-ci-sample =============",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt travis --verbose"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9",
+    "grunt-init": "~0.2.1",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-qunit": "~0.2.2",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-contrib-jshint": "~0.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chris-saunders/app-ci-sample.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "b231f0483f33e3b276956b9818ef0ac89856ddca",
+  "bugs": {
+    "url": "https://github.com/chris-saunders/app-ci-sample/issues"
+  }
+}
