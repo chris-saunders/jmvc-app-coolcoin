@@ -1,0 +1,3 @@
+[submodule "components/table"]
+	path = components/table
+	url = git@github.com:chris-saunders/jmvc-component-table.git
