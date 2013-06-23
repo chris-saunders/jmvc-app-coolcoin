@@ -1,4 +1,4 @@
 language: node_js
 node_js:
   - 0.10.12
-script: phantomjs testrunner.js
+script: phantomjs test/jasmine-standalone-1.3.1/SpecRunner.html
