@@ -11,6 +11,10 @@ steal(
         }, {
             init: function() {
                 this.element.append('<table></table>');
+                this.render();
+            },
+
+            render: function() {
                 this.find('table').components_table({
                     headers: {
                         foo: 'Foo'

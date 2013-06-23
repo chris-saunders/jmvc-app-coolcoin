@@ -4,4 +4,4 @@ steal("funcunit/qunit", function(){
 	test("coolcoin testing works", function(){
 		ok(true,"an assert is run");
 	});
-})
+});
