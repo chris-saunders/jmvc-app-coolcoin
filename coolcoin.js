@@ -1,16 +1,27 @@
 steal(
-    './coolcoin.css',           // application CSS file
-    './models/models.js',       // steals all your models
-    './fixtures/fixtures.js',   // sets up fixtures for your models
+    './coolcoin.css',
+    './models/models.js',
+    './fixtures/fixtures.js',
     'jquery/controller',
-    function(){                 // configure your application
+    '//components/table/table',
+    function() {
         $.Controller('Home',
         {
 
         }, {
             init: function() {
-                console.log('fire');
+                this.element.append('<table></table>');
+                this.find('table').components_table({
+                    headers: {
+                        foo: 'Foo'
+                    },
+                    rows: new $.Model.List([
+                        new $.Model({ foo: 'bar' })
+                    ])
+                });
             }
         });
+
+        $('.wrapper').home();
     }
 );
