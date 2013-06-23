@@ -1,4 +1,4 @@
-app-ci-sample
+jmvc-app-coolcoin
 =============
 
 # Overview
