@@ -3,7 +3,8 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     watch: {
-      files: ['**/*'],
+      files: ['../**/*'],
+      // tasks: ['test'],
       options: {
         livereload: true
       },
@@ -11,19 +12,10 @@ module.exports = function(grunt) {
     jshint: {
       files: ['*.js']
     },
-    jasmine: {
+    qunit: {
       all: {
-        src: 'steal?coolcoin/',
         options: {
-          specs: 'test/jasmine-standalone-1.3.1/spec/*Spec.js',
-          helpers: 'test/jasmine-standalone-1.3.1/spec/*Helper.js',
-        }
-      },
-      sample: {
-        src: 'test/jasmine-standalone-1.3.1/src/**/*.js',
-        options: {
-          specs: 'test/jasmine-standalone-1.3.1/spec/*Spec.js',
-          helpers: 'test/jasmine-standalone-1.3.1/spec/*Helper.js',
+          urls: ['http://localhost:8000/coolcoin/qunit.html']
         }
       }
     },
@@ -40,11 +32,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-contrib-qunit');
 
   // Default task(s).
-  grunt.registerTask('default', ['watch']);
-  grunt.registerTask('test', ['jasmine:all']);
-  grunt.registerTask('travis', ['jshint', 'jasmine:all']);
+  grunt.registerTask('default', ['connect', 'watch']);
+  grunt.registerTask('test', ['qunit:all']);
+  grunt.registerTask('travis', ['jshint', 'qunit:all']);
 
 };
