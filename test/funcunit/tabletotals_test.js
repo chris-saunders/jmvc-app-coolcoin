@@ -10,7 +10,12 @@ steal(
             ok(S('.tabletotals-row').length);
         });
 
-        
+        test('totals row contains same amount of columns as other rows', function() {
+            equals(S('tbody tr:first-child td').length, S('.tabletotals-row td').length);
+        });
 
+        test('amount is correctly totalled and appended to corresponding column cell', function() {
+            equals(S('.tabletotals-row td').eq(5).text(), 50);
+        });
     }
 );

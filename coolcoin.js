@@ -21,6 +21,11 @@ steal(
             },
 
             render: function() {
+                this.rows = new $.Model.List([
+                    new $.Model({ id: 1, date: '23/01/2005', type: 'POS', description: "McDonalds", tags: 'Food, Leisure', value: 23.50 }),
+                    new $.Model({ id: 2, date: '24/01/2005', type: 'BAC', description: "BHS", tags: 'Horses', value: 26.50 })
+                ]);
+
                 this.find('table').components_table({
                     headers: {
                         id: '#',
@@ -30,9 +35,7 @@ steal(
                         tags: 'Tags',
                         value: 'Value'
                     },
-                    rows: new $.Model.List([
-                        new $.Model({ id: 1, date: '23/01/2005', type: 'POS', description: "McDonalds", tags: 'Food, Leisure', value: -11.50 })
-                    ])
+                    rows: this.rows
                 })
                 .components_tablefilter({
                     filters: {
@@ -43,7 +46,13 @@ steal(
                     }
                 });
 
-                this.find('table.components_table tbody').append(this.view('tabletotals.ejs'));
+                var totalValue = 0;
+                this.rows.each(function(index, model) {
+                    totalValue += model.attr('value');
+                });
+
+                this.find('table.components_table tbody')
+                    .append(this.view('tabletotals.ejs', { totalValue: totalValue }));
             },
 
             'button.filter-show click': function(el, ev) {
