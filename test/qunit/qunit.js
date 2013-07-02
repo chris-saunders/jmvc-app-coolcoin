@@ -6,5 +6,7 @@ steal(
 ).then(
     "../../coolcoin.js"
 ).then(
-    "./tabletotals_test.js"
+    "./controllers/core_test.js"
+).then(
+	"./models/transaction_test.js"
 );

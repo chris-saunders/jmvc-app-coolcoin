@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     watch: {
-      files: ['../**/*'],
+      files: ['../**'],
       // tasks: ['test'],
       options: {
         livereload: true

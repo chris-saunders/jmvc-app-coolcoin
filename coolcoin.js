@@ -11,21 +11,32 @@ steal(
     'public/js/libs/bootstrap/css/bootstrap.css',
     'public/js/libs/bootstrap/js/bootstrap.js',
     function() {
-        $.Controller('Coolcoin',
+        $.Controller.extend('Coolcoin.Controllers.Core',
         {
 
         }, {
             init: function() {
+                var self = this;
                 this.element.append(this.view('./core.ejs'));
-                this.render();
+                this.getTransactions(
+                    function() {
+                        self.render();
+                    }
+                );
+            },
+
+            getTransactions: function(cb) {
+                var self = this;
+                Coolcoin.Models.Transaction.findAll()
+                .done(
+                    function(data) {
+                        self.transactionList = data;
+                        cb();
+                    }
+                );
             },
 
             render: function() {
-                this.rows = new $.Model.List([
-                    new $.Model({ id: 1, date: '23/01/2005', type: 'POS', description: "McDonalds", tags: 'Food, Leisure', value: 23.50 }),
-                    new $.Model({ id: 2, date: '24/01/2005', type: 'BAC', description: "BHS", tags: 'Horses', value: 26.50 })
-                ]);
-
                 this.find('table').components_table({
                     headers: {
                         id: '#',
@@ -35,31 +46,42 @@ steal(
                         tags: 'Tags',
                         value: 'Value'
                     },
-                    rows: this.rows
+                    rows: this.transactionList
                 })
                 .components_tablefilter({
                     filters: {
-                        date: {
-                            type: 'date',
-                            position: 1
-                        }
+                        // date: {
+                        //     type: 'date',
+                        //     position: 1
+                        // },
+                        tags: {
+                            type: 'select',
+                            position: 4,
+                            data: ['Food', 'Leisure']
+                        },
                     }
                 });
 
                 var totalValue = 0;
-                this.rows.each(function(index, model) {
+                this.transactionList.each(function(index, model) {
                     totalValue += model.attr('value');
                 });
 
                 this.find('table.components_table tbody')
-                    .append(this.view('tabletotals.ejs', { totalValue: totalValue }));
+                    .append(this.view('./tabletotals.ejs', { totalValue: totalValue }));
+
+                this.options.cb();
             },
 
             'button.filter-show click': function(el, ev) {
                 this.find('.components_tablefilter').trigger('tablefilter.toggleVisibility');
+            },
+
+            'tablefilter.submit': function(el, ev, data) {
+                this.render();
             }
         });
 
-        $('.wrapper').coolcoin();
+        $('.wrapper').coolcoin_core();
     }
 );

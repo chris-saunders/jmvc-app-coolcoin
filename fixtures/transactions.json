@@ -1,0 +1,18 @@
+[
+	{
+		"id": 1,
+		"date": "23/01/2005",
+		"type": "POS",
+		"description": "McDonalds",
+		"tags": "Food, Leisure",
+		"value": 23.50
+	}, 
+	{
+		"id": 2,
+		"date": "24/01/2005",
+		"type": "BAC",
+		"description": "BHS",
+		"tags": "Horses",
+		"value": 26.50
+	}
+]
