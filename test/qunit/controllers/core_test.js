@@ -1,5 +1,15 @@
 steal(
     function() {
+        // Overload render to enable async start() whilst calling original method
+        Coolcoin.Controllers.Core('Coolcoin.Controllers.Coretest',
+        {
+        }, {
+            render: function() {
+                this._super();
+                start();
+            }
+        });
+
         var $fixture = null,
             $div = null,
             repeat = {
@@ -8,8 +18,8 @@ steal(
                     $fixture.append('<div></div>');
                     $div = $fixture.find('div');
                     stop();
-                    Coolcoin.Controllers.Core.prototype.init = function() { this._super(); console.log('haha') };
-                    $div.coolcoin_core({ cb: function() { start(); console.log('good') } });
+            
+                    $div.coolcoin_coretest();
                 },
                 teardown: function() {
                     $fixture = $div = null;

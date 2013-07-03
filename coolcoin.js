@@ -11,7 +11,7 @@ steal(
     'public/js/libs/bootstrap/css/bootstrap.css',
     'public/js/libs/bootstrap/js/bootstrap.js',
     function() {
-        $.Controller.extend('Coolcoin.Controllers.Core',
+        $.Controller('Coolcoin.Controllers.Core',
         {
 
         }, {
@@ -69,8 +69,6 @@ steal(
 
                 this.find('table.components_table tbody')
                     .append(this.view('./tabletotals.ejs', { totalValue: totalValue }));
-
-                this.options.cb();
             },
 
             'button.filter-show click': function(el, ev) {
