@@ -1,3 +1,4 @@
-steal("jquery/dom/fixture", function(){
+steal(
+	function(){
 	$.fixture('/transactions.json', './fixtures/transactions.json');
 });

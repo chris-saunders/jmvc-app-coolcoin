@@ -1,0 +1,3 @@
+steal(
+	'./core.js'
+);

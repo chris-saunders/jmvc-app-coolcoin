@@ -4,9 +4,8 @@ steal(
 ).then(
     "vendor/sinon-qunit-1.0.0.js"
 ).then(
-    "../../coolcoin.js"
+    "coolcoin"
 ).then(
-    "./controllers/core_test.js"
-).then(
-	"./models/transaction_test.js"
+    "./controllers/controllers.js"
+	// "./models/models.js"
 );
